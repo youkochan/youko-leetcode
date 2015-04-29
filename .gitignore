@@ -3,4 +3,5 @@ quicksort.c
 /leetcodetest/
 /leetcode.xcworkspace/
 a.out
+.DS_Store
 
