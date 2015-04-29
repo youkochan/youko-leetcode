@@ -2,6 +2,6 @@ quick_sqrt.c
 quicksort.c
 /leetcodetest/
 /leetcode.xcworkspace/
-a.out
 .DS_Store
-
+*.swp
+*.out
