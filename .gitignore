@@ -6,3 +6,5 @@ quicksort.c
 .DS_Store
 *.swp
 *.out
+*.o
+*.exe
