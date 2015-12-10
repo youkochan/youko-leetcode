@@ -1,14 +1,16 @@
 #include <iostream>
-
-int i;
+#include <vector>
+#include <string>
 
 using namespace std;
 
 int main() {
-	int state = 0;
-	int i = 1;
-	string s;
+	vector<int> v;
+	v.push_back(111);
 
-	cin >> s;
-    return 0;
+	for (auto i : v)
+		cout << i << endl;
+    //cout << to_string(18882) << endl;
+
+	return 0;
 }

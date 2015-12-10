@@ -36,7 +36,7 @@ public:
         sort(s2.begin(), s2.end());
 
         int p1 = 0, p2 = 0;
-        while (p1 < s1.size() && p2 < s1.size()) {
+        while (p1 < s1.size() && p2 < s2.size()) {
             if (s1[p1] == s2[p2]) {
                 p1 ++;
                 p2 ++;
