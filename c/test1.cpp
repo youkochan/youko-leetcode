@@ -5,12 +5,12 @@
 using namespace std;
 
 int main() {
-	vector<int> v;
-	v.push_back(111);
+	string a = "c(a,b)";
 
-	for (auto i : v)
-		cout << i << endl;
-    //cout << to_string(18882) << endl;
+    string::size_type lidx = a.find_first_of("(");
+    string::size_type midx = a.find_first_of(",");
 
+    cout << a.substr(lidx+1,midx-lidx-1) << endl;
+    cout << a.substr(midx+1,a.size()-midx-2) << endl;
 	return 0;
 }

@@ -30,7 +30,7 @@ public:
     }
 };*/
 
-/*解法二，动态规划，lens[j]记录j以前比nums[j]小的数目个数*/
+/*解法二，lens[j]记录j以前比nums[j]小的数目个数*/
 /*class Solution {
 public:
     int lengthOfLIS(vector<int>& nums) {
