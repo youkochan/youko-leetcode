@@ -4,29 +4,19 @@
 
 using namespace std;
 
-class Solution {
-public:
-     int  NumberOf1(int n) {
-         int count = 0;
-         for (int i = 0; i <= 31; i ++) {
-             if ((n & (0x01 << i)) != 0)
-                 count ++;
-         }
-         return count;
-     }
-};
-
 int main() {
-	//string a = "c(a,b)";
+    int a = 0x12345678;
+    char *c = (char*)&a;
 
-    //string::size_type lidx = a.find_first_of("(");
-    //string::size_type midx = a.find_first_of(",");
+    cout << int(*(c+0)) << endl;
+    cout << int(*(c+1)) << endl;
+    cout << int(*(c+2)) << endl;
+    cout << int(*(c+3)) << endl;
 
-    //cout << a.substr(lidx+1,midx-lidx-1) << endl;
-    //cout << a.substr(midx+1,a.size()-midx-2) << endl;
+    cout << *(c+0) << endl;
+    cout << *(c+1) << endl;
+    cout << *(c+2) << endl;
+    cout << *(c+3) << endl;
 
-    Solution s;
-    cout << s.NumberOf1(1) << endl;
-
-	return 0;
+    return 0;
 }
