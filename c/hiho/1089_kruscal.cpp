@@ -1,66 +1,60 @@
-#include <iostream>
-#include <vector>
-#include <climits>
-#include <algorithm>
-
+#include<iostream>
+#include<algorithm>
 using namespace std;
 
-class Edge {
-public:
-    int i;
-    int j;
-    int dist;
-
-    Edge(int _i, int _j, int _d) {
-        i = _i;
-        j = _j;
-        dist = _d;
-    }
-
-    static int cmp(const Edge &e1, const Edge &e2) {
-        if (e1.dist != e2.dist)
-            return e1.dist < e2.dist;
-        else if (e1.i != e2.i)
-            return e1.i < e2.i;
-        else
-            return e1.j < e2.j;
-    }
+struct edge {
+    int u;
+    int v;
+    int len;
 };
 
-int main() {
-    int N, M;
-    cin >> N >> M;
-    vector<Edge> edges;
-    vector<bool> flags(M, false);
+int cmp(const edge a, const edge b) {
+    return a.len < b.len;
+}
 
-    while (M --) {
-        int i, j, d;
-        cin >> i >> j >> d;
-        edges.push_back(Edge(i, j, d));
+#define M 1000005
+#define N 100005
+edge e[M];
+int pos[N];                         //记录各个节点在哪个集合中。
+
+void init(int n) {
+    for (int i = 1; i <= n; i++) {
+        pos[i] = i;
     }
+}
 
-    sort(edges.begin(), edges.end(), Edge::cmp);
-    //cout << "---" << endl;
-    int sum = 0;
-    int count = 0;
-    for (int k = 0; k < edges.size(); k ++) {
-        //cout << edges[i].i << " " << edges[i].j << " " << edges[i].dist << endl;
-        int i = edges[k].i, j = edges[k].j, d = edges[k].dist;
-        if (!flags[i] || !flags[j]) {
-            if (!flags[i]) {
-                count = count + 1;
-                flags[i] = true;
-            }
-            if (!flags[j]) {
-                count = count + 1;
-                flags[j] = true;
-            }
-            sum += d;
+int find(int x) {
+    if (x == pos[x])
+        return x;
+    else {
+        pos[x] = find(pos[x]);
+        return pos[x];
+    }
+}
+
+int kruskal(int n, int m) {
+    int sum = 0,count = 1;
+    for (int i = 0; i < m; i++) {
+        int fx = find(e[i].u);
+        int fy = find(e[i].v);
+        if (fx != fy) {
+            sum += e[i].len;
+            count++;
+            if (count == n)
+                return sum;
+            pos[fx] = fy;
         }
-        if (count == N)
-            break;
     }
+}
 
-    cout << sum << endl;
-    return 0;
+int main() {
+    int n, m;
+    while (cin >> n >> m) {
+        init(n);                            //初始化并查集
+        for (int i = 0; i < m; i++) {
+            cin >> e[i].u >> e[i].v >> e[i].len;
+        }
+        sort(e, e + m, cmp);
+        cout << kruskal(n, m) << endl;
+    }
 }
